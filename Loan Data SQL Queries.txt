@@ -1,0 +1,97 @@
+Create database Loan_Data;
+Use Loan_Data;
+
+#1. How many total applicants are there in the dataset?
+Create View Total_Applicants AS
+Select Count(*) AS Total_Applicants
+From loan_data;
+
+Select * from Total_Applicants;
+
+#2. What is the average loan amount requested for each loan intent?
+Create View Avg_loan_amt_with_intent AS 
+Select `Loan Intent`, Round(avg(`loan amount`),2) AS Avg_Loan_Amount
+From Loan_data
+Group By `Loan Intent`;
+
+Select * from Avg_loan_amt_with_intent;
+
+#3. Which home ownership type has the highest average credit score?
+Create View Highest_Avg_Credit_Score AS
+Select `Home Ownership`, AVG(`Credit Score`) AS AVG_Credit_Score
+from Loan_data 
+Group By `Home Ownership`
+Order By Avg_Credit_score Desc Limit 1;
+
+Select * from Highest_Avg_Credit_Score;
+
+#4. Find the number of applicants in each education category and their average income level.
+Create View No_Of_Applicant_with_Education AS
+Select Education, Count(*) AS Number_of_Applicant, Round(Avg(`Income level`),2) AS Avg_Income_Level
+From Loan_data
+Group By Education;
+
+Select * from No_Of_Applicant_with_Education;
+
+#5. List the top 5 applicants with the highest interest rates, along with their income, loan amount, and loan intent.
+Create View Highest_Interest_Rate_Applicants AS
+Select `Interest rate`, `Income Level`, `Loan Amount`, `Loan Intent` 
+from loan_data
+Order By `Interest Rate` Desc
+Limit 5;
+
+Select * from Highest_Interest_Rate_Applicants;
+
+#6. What is the gender-wise average loan amount and average credit score?
+Create View Avg_Loan_Amt_And_Credit_Score AS
+Select Gender, Round(Avg(`Loan Amount`),2) AS Avg_Loan_Amount, Round(Avg(`Credit Score`),2) AS Avg_Credit_Score
+from Loan_Data
+Group By Gender;
+
+Select * from Avg_Loan_Amt_And_Credit_Score;
+
+#7. Find the average interest rate for applicants with a credit score above 700 vs. those below 700.
+Create View Avg_Interest_Rate_With_Credit_Score AS
+Select 
+Case 
+When `Credit Score` < 700 Then 'Below_700'
+Else 'Above_700'
+End as Credit_Score,
+Round(Avg(`Interest Rate`), 2) as Avg_Interest_Rate
+From loan_data
+Group By Credit_Score;
+
+Select * from Avg_Interest_Rate_With_Credit_Score;
+
+#8. Which loan intent category has the highest number of applicants owning their home (ownership = ‘Own’)?
+Create View Applicants_Of_Venture_Owning_Home AS
+Select `Loan intent`, Count(*) AS Number_Of_Applicants
+From Loan_data 
+Where `Home Ownership` = 'Own'
+Group By `Loan Intent`
+Order By Number_Of_Applicants DESC
+Limit 1;
+
+Select * from Applicants_Of_Venture_Owning_Home;
+
+#9. What is the average loan amount for each combination of home ownership type and education level?
+Create View Avg_Loan_Amount AS
+Select Education, `Home Ownership`, Round(Avg(`Loan Amount`), 2) AS Avg_Loan_Amount
+from Loan_data
+Group By Education, `Home Ownership`;
+
+select * from Avg_Loan_Amount;
+
+#10. How many applicants are there in each employment experience bracket (0-2 years, 3-5 years, 6+ years)?
+Create View Applicants_Per_Exp_Level AS
+Select 
+Case
+When `Emp Experience` <= 2 Then 'Junior'
+When `Emp Experience` Between 2 AND 5 Then 'Intermediate'
+Else 'Senior'
+End As Employment_Level,
+count(*) AS Total_Applicants
+from Loan_Data
+Group By Employment_Level;
+
+Select * from Applicants_Per_Exp_Level;
