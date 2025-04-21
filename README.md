@@ -28,10 +28,6 @@ The **Loan Data Analysis Project** focuses on deriving business insights from lo
 
 The Power BI file preview might not display directly on GitHub if the file size exceeds platform limits. You can download the `.pbix` file and open it in Power BI Desktop.
 
-## 📄 License
-
-This project is open for personal use, learning, and showcasing in portfolios. You may optionally add a `LICENSE` file for formal open-source licensing.
-
 ## ✅ Summary
 
 This project demonstrates:
