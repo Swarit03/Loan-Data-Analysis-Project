@@ -8,18 +8,6 @@ The project includes:
 - A set of SQL queries for data analysis
 - A Power BI dashboard visualizing key insights from the data
 
-## 📂 Project Structure
-
-Loan-Data-Analysis-Project/
-├── Data/
-│   └── Loan_Data.xlsx
-├── SQL Queries/
-│   └── Loan_Analysis_Queries.sql
-├── Power BI/
-│   └── Loan_Analysis_Dashboard.pbix
-├── README.md
-├── LICENSE (optional)
-
 ## 📊 About the Project
 
 The **Loan Data Analysis Project** focuses on deriving business insights from loan application data using both SQL and Power BI. The analysis covers aspects such as loan intent trends, home ownership patterns, employment experience brackets, interest rates against credit scores, and more.
